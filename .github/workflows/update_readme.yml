@@ -19,10 +19,10 @@ jobs:
         uses: vn7n24fzkq/github-profile-summary-cards@release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          THEME: bear
+          THEME: algolia
+          UTC_OFFSET: 9
         with:
           USERNAME: ${{ env.GITHUB_USERNAME }}
-          UTC_OFFSET: 9
 
       - name: Commit and push if changed
         run: |
