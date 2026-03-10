@@ -11,18 +11,20 @@ env:
 
 jobs:
   update-readme:
-    - name: Generate GitHub Profile Summary Cards
-      uses: vn7n24fzkq/github-profile-summary-cards@release
-      env:
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        THEME: bear
-      with:
-        USERNAME: ${{ env.GITHUB_USERNAME }}
+    steps:
+      - uses: actions/checkout@v3
 
-    - name: Commit and push if changed
-      run: |
-        git config --global user.email "action@github.com"
-        git config --global user.name "GitHub Action"
-        git add .
-        git diff --quiet && git diff --staged --quiet || git commit -m "Update README and Stats Cards"
-        git push
+      - name: Generate GitHub Profile Summary Cards
+        uses: vn7n24fzkq/github-profile-summary-cards@release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          THEME: bear
+        with:
+          USERNAME: ${{ env.GITHUB_USERNAME }}
+
+      - name: Commit and push if changed
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git add .
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update README and Stats Cards" && git push)
