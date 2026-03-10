@@ -1,0 +1,28 @@
+name: Update README
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+env:
+  GITHUB_USERNAME: 'albardoo02'
+  CONNPASS_NICKNAME: 'albardoo02'
+
+jobs:
+  update-readme:
+    - name: Generate GitHub Profile Summary Cards
+      uses: vn7n24fzkq/github-profile-summary-cards@release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        THEME: bear
+      with:
+        USERNAME: ${{ env.GITHUB_USERNAME }}
+
+    - name: Commit and push if changed
+      run: |
+        git config --global user.email "action@github.com"
+        git config --global user.name "GitHub Action"
+        git add .
+        git diff --quiet && git diff --staged --quiet || git commit -m "Update README and Stats Cards"
+        git push
