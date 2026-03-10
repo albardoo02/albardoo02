@@ -22,6 +22,7 @@ jobs:
           THEME: bear
         with:
           USERNAME: ${{ env.GITHUB_USERNAME }}
+          UTC_OFFSET: 9
 
       - name: Commit and push if changed
         run: |
