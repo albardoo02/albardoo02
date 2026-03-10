@@ -2,8 +2,11 @@
 
 <div>
   <img src="./profile-summary-card-output/algolia/0-profile-details.svg" width="49%" />
+  
   <img src="./profile-summary-card-output/algolia/1-repos-per-language.svg" width="49%" />
+  
   <img src="./profile-summary-card-output/algolia/2-most-commit-language.svg" width="49%" />
+  
   <img src="./profile-summary-card-output/algolia/3-stats.svg" width="49%" />
 </div>
 
